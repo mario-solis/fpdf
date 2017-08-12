@@ -8,29 +8,35 @@
 include ('./fpdf181/fpdf.php');
 $pdf = new FPDF();
 $pdf->AddPage();
+
 //Horizontal increase: 15
-// line= 10, 24, 38, 52, 66, 80, 94, 108
-$height_alignment = getimagesize('img/100.png')[1]; 
-$pdf->Image('img/100.png',10,(100-(($height_alignment/2)/3.86)));
-$height_alignment = getimagesize('img/a09.png')[1]; 
-$pdf->Image('img/a09.png',25,(100-(($height_alignment/2)/3.86)));
-$height_alignment = getimagesize('img/d00.png')[1];
-$pdf->Image('img/d00.png',40,(100-(($height_alignment/2)/3.86)));
-$height_alignment = getimagesize('img/a09.png')[1];
-$pdf->Image('img/a09.png',55,(100-(($height_alignment/2)/3.86)));
-$height_alignment = getimagesize('img/b05.png')[1];
-$pdf->Image('img/b05.png',70,(100-(($height_alignment/2)/3.86)));
-$height_alignment = getimagesize('img/j02.png')[1];
-$pdf->Image('img/j02.png',85,(100-(($height_alignment/2)/3.86)));
-$height_alignment = getimagesize('img/s02.png')[1];
-$pdf->Image('img/s02.png',100,(100-(($height_alignment/2)/3.86)));
-$height_alignment = getimagesize('img/e07.png')[1];
-$pdf->Image('img/e07.png',115,(100-(($height_alignment/2)/3.86)));
+$horizontal_position = 0;
+$pdf->Image('img/100.png',($hotizontal_position += 15),vertical_position('img/100.png')); //  15
+$pdf->Image('img/a09.png',($hotizontal_position += 15),vertical_position('img/a09.png')); //  30
+$pdf->Image('img/d00.png',($hotizontal_position += 15),vertical_position('img/d00.png')); //  45
+$pdf->Image('img/a09.png',($hotizontal_position += 15),vertical_position('img/a09.png')); //  60
+$pdf->Image('img/b05.png',($hotizontal_position += 15),vertical_position('img/b05.png')); //  75
+$pdf->Image('img/j02.png',($hotizontal_position += 15),vertical_position('img/j02.png')); //  90
+$pdf->Image('img/s02.png',($hotizontal_position += 15),vertical_position('img/s02.png')); // 105
+$pdf->Image('img/e07.png',($hotizontal_position += 15),vertical_position('img/e07.png')); // 120
+$pdf->Image('img/t01.png',($hotizontal_position += 15),vertical_position('img/t01.png')); // 135
+$pdf->Image('img/p00.png',($hotizontal_position += 15),vertical_position('img/p00.png')); // 150
+$pdf->Image('img/e07.png',($hotizontal_position += 15),vertical_position('img/e07.png')); // 165
+$pdf->Image('img/g01.png',($hotizontal_position += 15),vertical_position('img/g01.png')); // 180
+
+$pdf->Image('img/m03.png',($hotizontal_position += 15),vertical_position('img/m03.png')); // 195
+$pdf->Image('img/b05.png',($hotizontal_position += 15),vertical_position('img/b05.png')); // 210
+
 $pdf->SetFont('Arial','B',16);
-$pdf->Cell(1,1,$height_alignment);
-$pdf->Cell(1,10,'Hello World!');
-$pdf->Cell(1,20,'Powered by FPDF.');
+$pdf->Cell(10,10,$horizontal_position+2,1,2,'C');
+
 $pdf->Output();
+
+function vertical_position($img_file){
+	// *(ceil($horizontal_position/180))
+	return ((100)-((getimagesize($img_file)[1]/2)/3.86)); 
+}
+
 ?>
 </body>
 </html>
